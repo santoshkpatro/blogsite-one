@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Search
+{% endblock title %}
+
+{% block body %}
+<div class="container">
+    <h1>Search Results:</h1>
+    <hr>
+    {% for post in posts %}
+    <div class="jumbotron">
+        <h1 class="display-4">{{post.title}}</h1>
+        <p class="lead">By - {{post.author}}</p>
+        <hr class="my-4">
+        <p>{{post.content|truncatechars:300}}</p>
+        <a class="btn btn-primary btn-lg" href="/blog/{{post.sno}}/" role="button">Read More</a>
+    </div>
+    {% endfor %}
+</div>
+{% endblock body %}

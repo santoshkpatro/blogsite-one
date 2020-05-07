@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Blog Post Page
+{% endblock title %}
+
+{% block body %}
+
+<div class="container my-5">
+    <div class="jumbotron">
+        <h1 class="display-4">{{post.title}}</h1>
+        <p class="lead">By - {{post.author}}</p>
+        <hr class="my-4">
+        <p>{{post.content}}</p>
+    </div>
+</div>
+
+<hr>
+
+<div class="container">
+    <h2>Comments: </h2>
+    <div class="row">
+        <div class="col-md-2">Name</div>
+        <div class="col-md-10">Your comment will appear here</div>
+    </div>
+</div>
+
+<hr>
+
+<div class="container">
+    <h3>Footer</h3>
+</div>
+
+
+{% endblock body %}
