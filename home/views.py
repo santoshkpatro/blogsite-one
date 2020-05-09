@@ -68,6 +68,7 @@ def signup_view(request):
                 user = User.objects.create_user(username=username, first_name=firstname, last_name=lastname, email=email, password=password1)
                 user.save()
                 messages.success(request, "Account created successfully!!")
+                login(request, user)
                 return redirect('home')
     return redirect('home')
 

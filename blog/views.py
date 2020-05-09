@@ -1,28 +1,25 @@
-from django.shortcuts import render, HttpResponse
-from .models import Post, BlogComment
-from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, HttpResponse, redirect
+from .models import Post
+from django.contrib.auth import authenticate
+from django.contrib import messages
+
 
 # Create your views here.
-def blogHome(request):
+def blog_view(request):
     allPost = Post.objects.all()
     context = {
         'allPost': allPost
     }
-    return render(request, 'blog/blogHome.html', context)
+    return render(request, 'blog/blog_view.html', context)
 
 
 def blogPost(request, sl_no):
-    post = Post.objects.get(sno=sl_no)
-    comments = BlogComment.objects.filter(post=post)
-    context = {
-        'post': post,
-        'comments': comments,
-    }
-    return render(request, 'blog/blogPost.html', context)
-
-
-def blogComment(request):
-    if request.method == "POST":
-        pass
-
-    return redirect("/")
+    if request.user.is_authenticated:
+        post = Post.objects.get(sno=sl_no)
+        context = {
+            'post': post,
+        }
+        return render(request, 'blog/blogPost.html', context)
+    else:
+        messages.warning(request, 'Please login to view in details!!!')
+        return redirect('blog_view')
