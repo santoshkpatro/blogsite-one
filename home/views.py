@@ -8,7 +8,11 @@ from django.contrib.auth import authenticate, login, logout
 
 # Create your views here.
 def home(request):
-    return render(request, 'home/home.html')
+    recent_posts = Post.objects.order_by('timeStamp')[0:3]
+    context = {
+        'recent_posts': recent_posts,
+    }
+    return render(request, 'home/home.html', context)
 
 
 def contact(request):
@@ -77,7 +81,7 @@ def login_view(request):
     if request.method == 'POST':
         user_text = request.POST['user-text']
         password = request.POST['password']
-        
+
         if '@' in user_text:
             user = authenticate(request, email=user_text, password=password)
         else:
