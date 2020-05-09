@@ -11,9 +11,7 @@
     integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
 
   <style>
-    body{
-      background-color: #535C68;
-    }
+    
   </style>
 
   <title>
@@ -148,8 +146,8 @@
           <form action="/login/" method="POST">
             {% csrf_token %}
             <div class="form-group">
-              <label for="username">Username</label>
-              <input type="text" class="form-control" name="username" id="username" aria-describedby="username">
+              <label for="user-text">Username or Email</label>
+              <input type="text" class="form-control" name="user-text" id="user-text" aria-describedby="user-text">
             </div>
             <div class="form-group">
               <label for="Password">Password</label>

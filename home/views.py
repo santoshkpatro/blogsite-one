@@ -75,9 +75,14 @@ def signup_view(request):
 
 def login_view(request):
     if request.method == 'POST':
-        username = request.POST['username']
+        user_text = request.POST['user-text']
         password = request.POST['password']
-        user = authenticate(request, username=username, password=password)
+        
+        if '@' in user_text:
+            user = authenticate(request, email=user_text, password=password)
+        else:
+            user = authenticate(request, username=user_text, password=password)
+
         if user is not None:
             login(request, user)
             # Redirect to a success page.
