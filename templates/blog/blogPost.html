@@ -17,4 +17,19 @@ Blog Post Page
 
 <hr>
 
+<div class="container">
+    <h1>Comments::</h1>
+    {% for comment in comments %}
+    <div class="row">
+        <div class="col-md-2">
+            <p>{{ comment.user.first_name }}</p>
+        </div>
+        <div class="col-md-10">
+            <p>{{ comment.comment_text }}</p>
+        </div>
+    </div>
+    <hr>
+    {% endfor %}
+</div>
+
 {% endblock body %}
