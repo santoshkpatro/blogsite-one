@@ -29,17 +29,15 @@ def blogPost(request, sl_no):
 
 def user_comment(request, sl_no):
     if request.user.is_authenticated:
-        if request.method == 'POST':
-            user = request.user
-            comment_text = request.POST['comment']
-            user_post = Post.objects.filter(sno=sl_no)
-            
-            new_comment = Comment(user=user, comment_text=comment_text, post=user_post)
-            new_comment.save()
-            messages.success(request, "Comment added successfully!!")
+        comment_text = request.GET['comment-text']
+        user_post = Post.objects.get(sno=sl_no)
+
+        new_comment = Comment(user=request.user, post=user_post, comment_text=comment_text)
+        new_comment.save()
+        messages.success(request, "Comment added successfully!!")
     else:
-        messages.warning(request, 'Please login to comment!!!')
-    
+        messages.warning(request, "Please login to comment")
+
     return redirect(f'/blog/{sl_no}')
     
     

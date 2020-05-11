@@ -18,17 +18,27 @@ Blog Post Page
 <hr>
 
 <div class="container">
-    <h1>Comments::</h1>
+    <h4>Please write your comment</h4>
+    <form action="{{ request.path }}user_comment/" method="GET">
+        <div class="form-group">
+          <input type="text" class="form-control" name="comment-text" id="comment-text" placeholder="Type your comment" aria-describedby="comment-text">
+        </div>
+        <button type="submit" class="btn btn-danger btn-sm">Submit</button>
+    </form>
+</div>
+
+<hr>
+
+<div class="container">
+    <h2 class="text-success">Comments Section -</h2>
+    <br>
     {% for comment in comments %}
-    <div class="row">
-        <div class="col-md-2">
-            <p>{{ comment.user.first_name }}</p>
-        </div>
-        <div class="col-md-10">
-            <p>{{ comment.comment_text }}</p>
-        </div>
+    <div>
+        <blockquote class="blockquote text-right">
+            <p class="mb-0">{{ comment.comment_text }}</p>
+            <footer class="blockquote-footer font-weight-bold text-danger">{{ comment.user.first_name }}</footer>
+        </blockquote>
     </div>
-    <hr>
     {% endfor %}
 </div>
 
