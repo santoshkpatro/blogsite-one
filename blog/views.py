@@ -72,5 +72,15 @@ def manage_post(request):
         messages.warning(request, 'Please login to manage your post!!')
         context = {}
     return render(request, 'blog/manage_post.html', context)
+
+
+def delete_post(request, sl_no):
+    if request.user.is_authenticated:
+        del_post = Post.objects.get(sno=sl_no)
+        del_post.delete()
+        messages.success(request, 'Post got deleted!!')
+    else:
+        messages.danger(request, 'Invalid Attempt!!')
+    return redirect('/blog/manage_post')
     
     

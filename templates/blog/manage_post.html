@@ -11,13 +11,13 @@ Blog Manage
         {% for post in posts %}
         <div class="col-4">
             <div class="card my-4" style="width: 18rem;">
-                <div class="card-body" style="background-color: #cc822e;">
+                <div class="card-body" style="background-color: #d68d3a;">
                   <h5 class="card-title font-weight-bold">{{ post.title|truncatechars:20 }}</h5>
-                  <hr>
+                  <hr class="bg-success">
                   <p class="card-text">{{ post.content|truncatechars:150 }}</p>
-                  <hr>
-                  <a href="#" class="card-link"><span class="badge badge-primary">View</span></a>
-                  <a href="#" class="card-link float-right"><span class="badge badge-danger">Delete</span></a>
+                  <hr class="bg-success">
+                  <a href="/blog/{{ post.sno }}" class="card-link"><span class="badge badge-primary">View</span></a>
+                  <a href="/blog/{{ post.sno }}/delete_post" class="card-link float-right"><span class="badge badge-danger">Delete</span></a>
                 </div>
             </div>
         </div>
