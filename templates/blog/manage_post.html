@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Blog Manage
+{% endblock title %}
+
+{% block body %}
+
+<div class="container mt-4">
+    <div class="row">
+        {% for post in posts %}
+        <div class="col-4">
+            <div class="card my-4" style="width: 18rem;">
+                <div class="card-body" style="background-color: #cc822e;">
+                  <h5 class="card-title font-weight-bold">{{ post.title|truncatechars:20 }}</h5>
+                  <hr>
+                  <p class="card-text">{{ post.content|truncatechars:150 }}</p>
+                  <hr>
+                  <a href="#" class="card-link"><span class="badge badge-primary">View</span></a>
+                  <a href="#" class="card-link float-right"><span class="badge badge-danger">Delete</span></a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+{% endblock body %}

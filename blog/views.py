@@ -50,6 +50,7 @@ def create_post(request):
                 if len(content)>25:
                     new_post = Post(title=title, content=content, author=request.user)
                     new_post.save()
+                    messages.success(request, 'Successfully Created your post!!')
                     return redirect(f'/blog/{new_post.sno}')
                 else:
                     messages.warning(request, "Please enter a valid size of content for your post...")
@@ -58,5 +59,18 @@ def create_post(request):
     else:
         messages.warning(request, "Please login to write a post!!!")
     return render(request, 'blog/create_post.html')
+
+
+def manage_post(request):
+    if request.user.is_authenticated:
+        view_user = request.user
+        posts = view_user.post_set.all()
+        context = {
+            'posts': posts,
+        }
+    else:
+        messages.warning(request, 'Please login to manage your post!!')
+        context = {}
+    return render(request, 'blog/manage_post.html', context)
     
     
