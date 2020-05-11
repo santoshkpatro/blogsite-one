@@ -9,14 +9,16 @@ active
 {% endblock blogHomeactive %}
 
 {% block body %}
+<br>
+<br>
 <div class="container my-3">
     {% for post in allPost %}
-    <div class="jumbotron">
+    <div class="jumbotron border border-success">
         <h1 class="display-4">{{post.title}}</h1>
-        <p class="lead">By - {{post.author}}</p>
-        <hr class="my-4">
+        <p class="lead text-danger font-weight-bold"> -{{post.author}}</p>
+        <hr class="my-4 border border-success">
         <p>{{post.content|truncatechars:300}}</p>
-        <a class="btn btn-primary btn-lg" href="/blog/{{post.sno}}/" role="button">Read More</a>
+        <a class="btn btn-warning btn-sm" href="/blog/{{post.sno}}/" role="button">Read More >></a>
     </div>
     {% endfor %}
 </div>
