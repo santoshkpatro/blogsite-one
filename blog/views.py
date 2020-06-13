@@ -76,9 +76,13 @@ def manage_post(request):
 
 def delete_post(request, sl_no):
     if request.user.is_authenticated:
+        current_user = request.user
         del_post = Post.objects.get(sno=sl_no)
-        del_post.delete()
-        messages.success(request, 'Post got deleted!!')
+        if del_post.author == current_user:
+            del_post.delete()
+            messages.success(request, 'Post got deleted!!')
+        else:
+            messages.warning(request, 'You are not authorized...')
     else:
         messages.danger(request, 'Invalid Attempt!!')
     return redirect('/blog/manage_post')
