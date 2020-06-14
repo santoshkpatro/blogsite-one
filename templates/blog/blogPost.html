@@ -21,7 +21,8 @@ Blog Post Page
 
 <div class="container">
     <h4>Please write your comment</h4>
-    <form action="{{ request.path }}user_comment/" method="GET">
+    <form action="{{ request.path }}user_comment/" method="POST">
+        {% csrf_token %}
         <div class="form-group">
           <input type="text" class="form-control" name="comment-text" id="comment-text" placeholder="Type your comment" aria-describedby="comment-text">
         </div>
@@ -36,11 +37,13 @@ Blog Post Page
     <br>
     {% for comment in comments %}
     <div>
-        <blockquote class="blockquote text-right">
+        <blockquote class="blockquote">
+            <small class="form-text text-muted">{{ comment.timeStamp }}</small>
             <p class="mb-0">{{ comment.comment_text }}</p>
-            <footer class="blockquote-footer font-weight-bold text-danger">{{ comment.user.first_name }}</footer>
+            <footer class="blockquote-footer font-weight-bold text-primary">{{ comment.user.first_name }}</footer>
         </blockquote>
     </div>
+    <hr>
     {% endfor %}
 </div>
 

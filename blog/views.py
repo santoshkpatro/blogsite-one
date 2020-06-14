@@ -29,7 +29,7 @@ def blogPost(request, sl_no):
 
 def user_comment(request, sl_no):
     if request.user.is_authenticated:
-        comment_text = request.GET['comment-text']
+        comment_text = request.POST['comment-text']
         user_post = Post.objects.get(sno=sl_no)
 
         new_comment = Comment(user=request.user, post=user_post, comment_text=comment_text)
