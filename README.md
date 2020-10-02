@@ -1,5 +1,5 @@
-# blogsite
-A basic blog post website
+# Blog-Site
+A basic blog post website made using Django
 
 
 Requirements:
